@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+
+# This sets up an Nginx container and maps port 8080 on your server to port 80 inside the container
