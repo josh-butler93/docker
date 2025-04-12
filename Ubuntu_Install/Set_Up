@@ -12,4 +12,13 @@
     command: sudo usermod -aG docker $USER
         #adds user to the docker group
     command: sudo reboot
-    command: docker ps #run this command after the reboot
+    command: docker ps #run this command after the reboot to verify suffient permission
+    command: docker pull hello-world
+
+5. docker compose --version
+    command: sudo apt install docker-compose-v2 -y
+        #once install is completed run the version command again
+
+6. mkdir nginx-test && cd nginx-test
+    command: nano docker-compose.yml
+        see docker compose folder for config
