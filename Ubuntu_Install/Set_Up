@@ -1,0 +1,15 @@
+1. sudo apt update && sudo apt upgrade -y
+
+2. sudo apt install docker.io -y
+    command: docker --version
+    command: systemctl status docker
+
+3. sudo docker run hello-world #command is used to pull the hello-world image
+
+4. sudo groupent group docker
+    output: docker:*:<groupid#>
+    or
+    command: sudo usermod -aG docker $USER
+        #adds user to the docker group
+    command: sudo reboot
+    command: docker ps #run this command after the reboot
