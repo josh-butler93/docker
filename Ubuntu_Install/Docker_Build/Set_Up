@@ -20,5 +20,4 @@
         #once install is completed run the version command again
 
 6. mkdir nginx-test && cd nginx-test
-    command: nano docker-compose.yml
-        see docker compose folder for config
+    command: nano docker-compose.yml 
