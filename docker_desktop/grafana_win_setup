@@ -1,0 +1,48 @@
+ Step 1: Pull the Grafana Image in Docker Desktop
+Open Docker Desktop
+
+Go to the "Images" tab in the left sidebar
+
+In the top search bar (or "Pull Image" button):
+
+Type: grafana/grafana
+
+Click Pull
+
+✅ Step 2: Run the Grafana Container
+Now that you have the image downloaded, let’s start the container.
+
+Still in Docker Desktop, go to the Images tab.
+
+Find the grafana/grafana image.
+
+Click the “Run” button next to it.
+
+In the Run a container window:
+
+🛠️ Configure the container:
+
+Setting	Value
+Container Name	grafana
+Host Port	3000
+Container Port	3000
+Scroll down to Volumes and:
+
+Click “Add file or directory”
+
+Choose “Volume”
+
+Name it something like grafana-storage
+
+Mount it to: /var/lib/grafana
+
+This ensures all your dashboards/settings are saved even if the container stops.
+
+Click “Run”
+
+Docker will start the Grafana container. ✅
+
+Next up, open your browser and try to visit:
+🔗 http://localhost:3000
+
+Let me know once the page loads (or if anything doesn’t work), and we’ll log in!
