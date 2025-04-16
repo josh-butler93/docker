@@ -1,0 +1,79 @@
+Step : Pull and Run a Nagios Container on Docker Desktop (Windows)
+We’ll use a solid, ready-to-go Nagios Docker image.
+
+🚀 Steps:
+Open PowerShell or Command Prompt (with Docker Desktop running)
+
+Run the following to pull and start the Nagios container:
+docker run -d --name nagios -p 8080:80 -v nagios-data:/opt/nagios/etc jasonrivers/nagios
+http://localhost:8080 <or port setup for nagios>
+user: nagiosadmin
+pass:nagios
+
+Adding VMs as Hosts in Nagios
+
+🛠️ Step-by-step:
+Open a terminal or PowerShell window
+(where Docker is available)
+
+Open a shell inside the container:
+
+bash
+Copy
+Edit
+docker exec -it nagios bash
+Navigate to the Nagios config directory:
+
+bash
+Copy
+Edit
+cd /opt/nagios/etc/objects
+Edit localhost.cfg or create a new file like proxmox-vms.cfg:
+
+bash
+Copy
+Edit
+nano proxmox-vms.cfg
+Add a new host definition for one of your VMs:
+
+cfg
+Copy
+Edit
+define host {
+    use             linux-server
+    host_name       vm1
+    alias           Proxmox VM 1
+    address         192.168.1.101  ; replace with your VM's IP
+    max_check_attempts  3
+    check_period    24x7
+    notification_interval 30
+    notification_period   24x7
+}
+Add a simple ping check:
+
+cfg
+Copy
+Edit
+define service {
+    use                     generic-service
+    host_name               vm1
+    service_description     PING
+    check_command           check_ping!100.0,20%!500.0,60%
+}
+Save the file and exit Nano:
+Press CTRL+O, then Enter, then CTRL+X.
+
+🧷 Step 4: Include Your Config File in Nagios
+While still inside the container:
+
+bash
+Copy
+Edit
+cd /opt/nagios/etc
+nano nagios.cfg
+Scroll down and add this line at the bottom (or with the other cfg_file= entries):
+
+cfg
+Copy
+Edit
+cfg_file=/opt/nagios/etc/objects/proxmox-vms.cfg
