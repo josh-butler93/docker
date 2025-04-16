@@ -77,3 +77,5 @@ cfg
 Copy
 Edit
 cfg_file=/opt/nagios/etc/objects/proxmox-vms.cfg
+docker restart nagios
+
